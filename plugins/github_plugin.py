@@ -12,3 +12,7 @@ def commit_change(payload: dict):
 
 def register_plugin(app):
     app.include_router(router)
+@app.get("/health")
+def health(): return {"status":"ok"}
+@app.get("/ready")
+def ready(): return {"ready":True}

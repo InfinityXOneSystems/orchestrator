@@ -1,3 +1,5 @@
+import logging
+
 
 # ===================== ROUTE ENFORCEMENT KERNEL =====================
 
@@ -20,9 +22,9 @@ ROUTES_REQUIRED = [
 
 @app.on_event("startup")
 def enforce_routes():
-    existing = {route.path for route in app.routes}
+    logging.info({
     missing = [r for r in ROUTES_REQUIRED if r not in existing]
-    print({
+    logging.info({
         "ts": datetime.utcnow().isoformat(),
         "event": "ROUTE_ENFORCEMENT_CHECK",
         "existing_routes": sorted(existing),
